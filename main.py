@@ -1,22 +1,25 @@
 from fastapi import FastAPI
 app = FastAPI()
 
-@app.POST("/washrooms/")
-def mk_washroom {
-     "name": "Test Library Washroom",
-     "location": {
-       "type": "Point",
-       "coordinates": [-79.3968, 43.6532]
-     },
-     "address": "123 College St, Toronto",
-     "accessibility_features": {
-       "period_products": 3,
-       "baby_changing": 2,
-       "wheelchair_accessible": 1,
-       "gender_neutral": 1,
-       "clean": 2,
-       "verified": 1,
-     },
-     "created_by": "test_user"
-}
+@app.post("/washrooms/")
+def mk_washroom(name: str, type: int, coord: int, addy: str, prd_prod: int, baby: int, wheelchair: int, gender: int, clean: int, verified: int, user: str): 
+    {
+        "name": name,
+        "location": 
+        {
+        "type": type,
+        "coordinates": coord,
+        },
+        "address": addy,
+        "accessibility_features": 
+        {
+        "period_products": prd_prod,
+        "baby_changing": baby,
+        "wheelchair_accessible": wheelchair,
+        "gender_neutral": gender,
+        "clean": clean,
+        "verified": verified
+        },
+        "created_by": user
+    }
 
