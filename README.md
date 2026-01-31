@@ -4,11 +4,11 @@ This project is a mobile app designed to make finding suitable washrooms more ac
 
 ## 🔑 Key Features 
 
-**- User-based feedback:** can add ratings for new/verified washrooms, score based on features like cleanliness, wheelchair accessibility, availibility of period products, etc.
+*     **- User-based feedback:** can add ratings for new/verified washrooms, score based on features like cleanliness, wheelchair accessibility, availibility of period products, etc.
 
 
 ## 💻 Tech Stack
 
-**- Frontend:** React Native
-**- Backend:** MongoDB Atlas, FastAPI
+*     **- Frontend:** React Native
+*     **- Backend:** MongoDB Atlas, FastAPI
 
