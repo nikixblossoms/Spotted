@@ -15,7 +15,7 @@ const TabsLayout = () => {
                 paddingBottom: 30,
                 paddingTop: 10,
             },
-            headerShown: false,
+            headerShown: true, // CHANGE LATER!!
         }}
     >
         
