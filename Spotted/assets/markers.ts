@@ -6,7 +6,28 @@ export const markers = [
         latitudeDelta: 0.01,
         longitudeDelta: 0.01,
         id: 1,
-        name: "Library"
+        name: "Library",
+        washrooms: {
+            w1: {
+                type: "Unisex",
+                accessibility: "Accessible",
+                description: "Located on the first floor near the main entrance.",
+                rating: '⭐⭐⭐⭐⭐',
+            },
+            w2: {
+                type: "Unisex",
+                accessibility: "Accessible",
+                description: "Located on the first floor near the main entrance.",
+                rating: '⭐⭐⭐',
+            },
+            w3: {
+                type: "Unisex",
+                accessibility: "Accessible",
+                description: "Located on the first floor near the main entrance.",
+                rating: '⭐⭐⭐⭐',
+            }
+        }
+        
     },
     {
         latitude: 43.78350,
@@ -14,7 +35,8 @@ export const markers = [
         latitudeDelta: 0.01,
         longitudeDelta: 0.01,
         id: 2,
-        name: "Science Building"
+        name: "Science Building",
+        rating: '⭐⭐⭐',
     },
     {
         latitude: 43.79350,
@@ -22,7 +44,8 @@ export const markers = [
         latitudeDelta: 0.01,
         longitudeDelta: 0.01,
         id: 3,
-        name: "Student Center"
+        name: "Student Center",
+        rating: '⭐⭐',
     },
     {
         latitude: 43.76350,
@@ -30,6 +53,7 @@ export const markers = [
         latitudeDelta: 0.01,
         longitudeDelta: 0.01,
         id: 4,
-        name: "Seneca College"
+        name: "Seneca College",
+        rating: '⭐⭐⭐⭐',
     },
 ];

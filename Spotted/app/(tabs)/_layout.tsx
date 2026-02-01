@@ -1,21 +1,22 @@
-import { View, Text } from 'react-native'
 import { Tabs } from 'expo-router'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import Fontisto from '@expo/vector-icons/Fontisto';
 import React from 'react'
+import Feather from '@expo/vector-icons/Feather';
 
 const TabsLayout = () => {
   return (
     <Tabs
         screenOptions={{
-            tabBarActiveTintColor: '#ff6347',
+            tabBarActiveTintColor: '#ff3b58',
             tabBarStyle: {
                 borderTopWidth: 1,
                 height: 90,
                 paddingBottom: 30,
                 paddingTop: 10,
             },
-            headerShown: true, // CHANGE LATER!!
+            headerShown: false, // CHANGE LATER (maybe)!!
+            headerShadowVisible: false,
         }}
     >
         
@@ -34,7 +35,7 @@ const TabsLayout = () => {
             options={{
                 title:'Map',
                 tabBarIcon: ({ color, size }) => (
-                    <Ionicons name='flash-outline' size={size} color={color} />
+                    <Feather name="map-pin" size={size} color={color} />
                 )
             }}
         />

@@ -1,122 +1,92 @@
-import { Link } from "expo-router";
-import { useEffect, useState } from "react";
-import { Image, ScrollView, Text, View, StyleSheet, Pressable} from "react-native";
-
-interface Pokemon {
-  name: string;
-  image: string;
-  imageBack: string;
-  types: PokemonType[];
-}
-
-interface PokemonType {
-  type: {
-    name: string;
-    url: string;
-  }
-}
-
-const colorsByType = {
-  grass: 'green',
-  fire: 'orange',
-  water: 'blue',
-  bug: 'green'
-}
+import React from 'react';
+import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { useRouter } from 'expo-router';
 
 export default function Profile() {
+  const router = useRouter();
 
-  const [pokemons, setPokemons] = useState<Pokemon[]>([]);
+  const username = "John Doe";
+  const profilePic = "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y";
 
-  console.log(JSON.stringify(pokemons[0], null, 2));
-
-  useEffect(() => {
-    // fetch locations
-    fetchLocations()
-  }, []);
-
-  async function fetchLocations() {
-    // fetch locations from API
-    try {
-      const response = await fetch(
-        "https://pokeapi.co/api/v2/pokemon/?limit=20"
-      );
-      const data = await response.json();
-
-      const detailedPokemons = await Promise.all(
-        data.results.map(async (pokemon: any) => {
-          const res = await fetch(pokemon.url);
-          const details = await res.json();
-          return {
-            name: pokemon.name,
-            image: details.sprites.front_default, // main sprite
-            imageBack : details.sprites.back_default,
-            types: details.types,
-          };
-        })
-      );
-      
-      setPokemons(detailedPokemons);
-
-    } catch(error) {
-      console.log(error);
-    }
-  }
+  const handlePress = (page: string) => {
+    router.push('../profile'); // navigates to /settings, /notifications, /help
+  };
 
   return (
-    <ScrollView
-      contentContainerStyle={{
-        gap: 16,
-        padding: 16,
-      }}
-    >
-      {pokemons.map((pokemon) => (
-        <Link 
-          key={pokemon.name} 
-          href={{ pathname: '/details', params: { name : pokemon.name } }}
-          style={{
-            // @ts-ignore
-            backgroundColor: colorsByType[pokemon.types[0].type.name],
-            padding: 20,
-            borderRadius: 20,
-          }}
-        >
-          <View>
-            <Text style={styles.name}>{pokemon.name}</Text>
-            <Text style={styles.type}>{pokemon.types[0].type.name}</Text>
-            <View 
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-around',
-                marginBottom: 20,
-              }}>
+    <ScrollView contentContainerStyle={styles.container}>
+      {/* Profile Info */}
+      <View style={styles.profileInfo}>
+        <Image source={{ uri: profilePic }} style={styles.profilePic} />
+        <Text style={styles.username}>{username}</Text>
+      </View>
 
-              <Image 
-                source={{ uri: pokemon.image }} 
-                style={{ width: 150, height: 150 }}
-              />
-              <Image 
-                source={{ uri: pokemon.imageBack }} 
-                style={{ width: 150, height: 150 }}
-              />
-            </View>
-          </View>
-        </Link>
-      ))}
+      {/* Buttons */}
+      <View style={styles.buttonsContainer}>
+        <TouchableOpacity style={styles.button} onPress={() => handlePress("settings")}>
+          <Text style={styles.buttonText}>Settings</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.button} onPress={() => handlePress("notifications")}>
+          <Text style={styles.buttonText}>Notifications</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.button} onPress={() => handlePress("help")}>
+          <Text style={styles.buttonText}>Help & Support</Text>
+        </TouchableOpacity>
+      </View>
     </ScrollView>
-
   );
 }
 
 const styles = StyleSheet.create({
-  name: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    textAlign: 'center',
+  container: {
+    padding: 40,
+    alignItems: 'center',
+    gap: 35,
+    marginTop: 100,
+    borderRadius: 20,
+
+    // iOS shadow
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15,
+    shadowRadius: 6,
+
+    // Android shadow
+    elevation: 6,
   },
-  type: {
-    fontSize: 20,
+
+  profileInfo: {
+    alignItems: 'center',
+    gap: 12,
+  },
+
+  profilePic: {
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+  },
+
+  username: {
+    fontSize: 24,
     fontWeight: 'bold',
-    color: 'gray',
-    textAlign: 'center',
-  }
+  },
+
+  buttonsContainer: {
+    width: '100%',
+    gap: 25,
+  },
+
+  button: {
+    backgroundColor: '#f55f76',
+    paddingVertical: 18,
+    borderRadius: 12,
+    alignItems: 'center',
+  },
+
+  buttonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: '600',
+  },
 });

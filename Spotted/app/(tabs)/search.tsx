@@ -1,122 +1,91 @@
-import { Link } from "expo-router";
-import { useEffect, useState } from "react";
-import { Image, ScrollView, Text, View, StyleSheet, Pressable} from "react-native";
-
-interface Pokemon {
-  name: string;
-  image: string;
-  imageBack: string;
-  types: PokemonType[];
-}
-
-interface PokemonType {
-  type: {
-    name: string;
-    url: string;
-  }
-}
-
-const colorsByType = {
-  grass: 'green',
-  fire: 'orange',
-  water: 'blue',
-  bug: 'green'
-}
+import { Link } from 'expo-router';
+import { ScrollView, Text, View, StyleSheet } from 'react-native';
+import { markers } from '@/assets/markers';
 
 export default function Profile() {
-
-  const [pokemons, setPokemons] = useState<Pokemon[]>([]);
-
-  console.log(JSON.stringify(pokemons[0], null, 2));
-
-  useEffect(() => {
-    // fetch locations
-    fetchLocations()
-  }, []);
-
-  async function fetchLocations() {
-    // fetch locations from API
-    try {
-      const response = await fetch(
-        "https://pokeapi.co/api/v2/pokemon/?limit=20"
-      );
-      const data = await response.json();
-
-      const detailedPokemons = await Promise.all(
-        data.results.map(async (pokemon: any) => {
-          const res = await fetch(pokemon.url);
-          const details = await res.json();
-          return {
-            name: pokemon.name,
-            image: details.sprites.front_default, // main sprite
-            imageBack : details.sprites.back_default,
-            types: details.types,
-          };
-        })
-      );
-      
-      setPokemons(detailedPokemons);
-
-    } catch(error) {
-      console.log(error);
-    }
-  }
-
   return (
     <ScrollView
       contentContainerStyle={{
         gap: 16,
         padding: 16,
+        marginTop: 50,
       }}
     >
-      {pokemons.map((pokemon) => (
-        <Link 
-          key={pokemon.name} 
-          href={{ pathname: '/details', params: { name : pokemon.name } }}
-          style={{
-            // @ts-ignore
-            backgroundColor: colorsByType[pokemon.types[0].type.name],
-            padding: 20,
-            borderRadius: 20,
-          }}
+      {markers.map((marker) => (
+        <Link
+          key={marker.name}
+          href={{ pathname: '/details', params: { name: marker.name } }}
+          style={styles.card}
         >
           <View>
-            <Text style={styles.name}>{pokemon.name}</Text>
-            <Text style={styles.type}>{pokemon.types[0].type.name}</Text>
-            <View 
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-around',
-                marginBottom: 20,
-              }}>
+            <Text style={styles.name}>{marker.name}</Text>
 
-              <Image 
-                source={{ uri: pokemon.image }} 
-                style={{ width: 150, height: 150 }}
-              />
-              <Image 
-                source={{ uri: pokemon.imageBack }} 
-                style={{ width: 150, height: 150 }}
-              />
+            {/* <Text style={styles.subtitle}>
+              {marker.latitude.toFixed(4)}, {marker.longitude.toFixed(4)}
+            </Text> */}
+
+            <View style={styles.washroomContainer}>
+              {marker.washrooms?.w1 && (
+                <Text style={styles.washroom}>
+                  W1: {marker.washrooms.w1.rating}
+                </Text>
+              )}
+              {marker.washrooms?.w2 && (
+                <Text style={styles.washroom}>
+                  W2: {marker.washrooms.w2.rating}
+                </Text>
+              )}
+              {marker.washrooms?.w3 && (
+                <Text style={styles.washroom}>
+                  W3: {marker.washrooms.w3.rating}
+                </Text>
+              )}
             </View>
           </View>
         </Link>
       ))}
     </ScrollView>
-
   );
 }
 
 const styles = StyleSheet.create({
-  name: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    textAlign: 'center',
+  card: {
+    backgroundColor: '#e0e0e0',
+    padding: 23,
+    borderRadius: 20,
+    marginBottom: 8,
+
+    // iOS shadow
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.25,
+    shadowRadius: 6,
+
+    // Android shadow
+    elevation: 6,
   },
-  type: {
-    fontSize: 20,
+
+  name: {
+    fontSize: 26,
     fontWeight: 'bold',
+    textAlign: 'left',
+    marginBottom: 4,
+  },
+
+  subtitle: {
+    fontSize: 16,
     color: 'gray',
-    textAlign: 'center',
-  }
+    textAlign: 'left',
+    marginBottom: 12,
+  },
+
+  washroomContainer: {
+    gap: 9,
+  },
+
+  washroom: {
+    fontSize: 16,
+    fontWeight: '600',
+    textAlign: 'left',
+  },
 });
