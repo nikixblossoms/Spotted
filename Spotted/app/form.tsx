@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Stack } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import {
   ActionSheetIOS,
   Text,
@@ -8,11 +8,13 @@ import {
   TextInput,
   Pressable,
   View,
+  TouchableOpacity,
 } from "react-native";
 
+
 export default function Form() {
-  const [building, setBuilding] = useState<string | null>(null);
-  const [genderNeutral, setGenderNeutral] = useState(false);
+    const router = useRouter();
+    const [building, setBuilding] = useState<string | null>(null);
 
     const [toggles, setToggles] = useState({
         periodProducts: false,
@@ -33,87 +35,97 @@ export default function Form() {
         { key: "familyFriendly", label: "Family Friendly Changing Rooms" },
     ] as const;
 
-  return (
-    <>
-      <Stack.Screen options={{ title: "Spotted Something? 🤔" }} />
+    const handlePress = (page: string) => {
+        router.push('/'); 
+      };
 
-      <ScrollView contentContainerStyle={styles.container}>
-        <Text style={styles.subtitle}>Location details</Text>
+    return (
+        <>
+        <Stack.Screen options={{ title: "Spotted Something? 🤔" }} />
 
-        {/* Building Dropdown */}
-        <Pressable
-          style={styles.dropdown}
-          onPress={() =>
-            ActionSheetIOS.showActionSheetWithOptions(
-              {
-                options: ["Cancel", "Library", "Science Building", "Student Centre"],
-                cancelButtonIndex: 0,
-              },
-              (buttonIndex) => {
-                if (buttonIndex === 0) return;
-                setBuilding(
-                  ["Library", "Science Building", "Student Centre"][buttonIndex - 1]
-                );
-              }
-            )
-          }
-        >
-          <Text style={[styles.dropdownText, !building && { color: "#999" }]}>
-            {building ?? "Select building"}
-          </Text>
-        </Pressable>
+        <ScrollView contentContainerStyle={styles.container}>
+            <Text style={styles.subtitle}>Location details</Text>
 
-        <TextInput placeholder="Floor" placeholderTextColor="#D3D3D3" style={styles.input} />
+            {/* Building Dropdown */}
+            <Pressable
+            style={styles.dropdown}
+            onPress={() =>
+                ActionSheetIOS.showActionSheetWithOptions(
+                {
+                    options: ["Cancel", "Library", "Science Building", "Student Centre"],
+                    cancelButtonIndex: 0,
+                },
+                (buttonIndex) => {
+                    if (buttonIndex === 0) return;
+                    setBuilding(
+                    ["Library", "Science Building", "Student Centre"][buttonIndex - 1]
+                    );
+                }
+                )
+            }
+            >
+            <Text style={[styles.dropdownText, !building && { color: "#999" }]}>
+                {building ?? "Select building"}
+            </Text>
+            </Pressable>
 
-        <Text style={styles.subtitle}>Key Amenities</Text>
+            <TextInput placeholder="Floor" placeholderTextColor="#D3D3D3" style={styles.input} />
 
-        {/* Toggles */}
+            <Text style={styles.subtitle}>Key Amenities</Text>
 
-        {items.map((item) => {
-          const isActive = toggles[item.key];
+            {/* Toggles */}
 
-          return (
-            <View key={item.key} style={styles.toggleRow}>
+            {items.map((item) => {
+            const isActive = toggles[item.key];
 
-              <Pressable
-                style={[
-                  styles.toggleButton,
-                  isActive && styles.toggleButtonActive,
-                ]}
-                onPress={() => toggleItem(item.key)}
-              >
-                <View style={styles.toggleInner}>
-                  <View
+            return (
+                <View key={item.key} style={styles.toggleRow}>
+
+                <Pressable
                     style={[
-                      styles.dot,
-                      isActive && styles.dotActive,
+                    styles.toggleButton,
+                    isActive && styles.toggleButtonActive,
                     ]}
-                  >
-                    {isActive && <Text style={styles.check}>✓</Text>}
-                  </View>
+                    onPress={() => toggleItem(item.key)}
+                >
+                    <View style={styles.toggleInner}>
+                    <View
+                        style={[
+                        styles.dot,
+                        isActive && styles.dotActive,
+                        ]}
+                    >
+                        {isActive && <Text style={styles.check}>✓</Text>}
+                    </View>
 
-                  <Text
-                    style={[
-                      styles.toggleText,
-                      isActive && styles.toggleTextActive,
-                    ]}
-                  >
-                    {isActive ? item.label : item.label}
-                  </Text>
+                    <Text
+                        style={[
+                        styles.toggleText,
+                        isActive && styles.toggleTextActive,
+                        ]}
+                    >
+                        {isActive ? item.label : item.label}
+                    </Text>
+                    </View>
+                </Pressable>
                 </View>
-              </Pressable>
+            );
+            })}
+
+            {/* Submit Button */}
+            <View style={styles.buttonsContainer}>
+                <TouchableOpacity style={styles.button} onPress={() => handlePress("index")}>
+                <Text style={styles.buttonText}>Submit</Text>
+                </TouchableOpacity>
             </View>
-          );
-        })}
-        
+            
 
-
-      </ScrollView>
-    </>
-  );
+        </ScrollView>
+        </>
+    );
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create({    
   container: {
     gap: 16,
     padding: 16,
@@ -168,7 +180,7 @@ const styles = StyleSheet.create({
   },
 
   toggleButtonActive: {
-    borderColor: "#4CAF50",
+    borderColor: "#f55f76",
     backgroundColor: "#fff",
   },
 
@@ -189,8 +201,8 @@ const styles = StyleSheet.create({
   },
 
   dotActive: {
-    borderColor: "#4CAF50",
-    backgroundColor: "#4CAF50",
+    borderColor: "#f55f76",
+    backgroundColor: "#f55f76",
   },
 
   check: {
@@ -205,7 +217,27 @@ const styles = StyleSheet.create({
   },
 
   toggleTextActive: {
-    color: "#4CAF50",
+    color: "#f55f76",
   },
+
+  buttonsContainer: {
+    width: '100%',
+    marginTop: 24,
+    gap: 25,
+  },
+
+  button: {
+    backgroundColor: '#f55f76',
+    paddingVertical: 18,
+    borderRadius: 12,
+    alignItems: 'center',
+  },
+
+  buttonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: '600',
+  },
+
 });
 

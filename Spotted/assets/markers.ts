@@ -76,18 +76,6 @@ export const markers = [
                 description: "Located on the first floor near the main entrance.",
                 rating: '⭐⭐⭐⭐⭐',
             },
-            w2: {
-                type: "Unisex",
-                accessibility: "Accessible",
-                description: "Located on the first floor near the main entrance.",
-                rating: '⭐⭐⭐',
-            },
-            w3: {
-                type: "Unisex",
-                accessibility: "Accessible",
-                description: "Located on the first floor near the main entrance.",
-                rating: '⭐⭐⭐⭐',
-            }
         }
     },
     {
@@ -142,12 +130,6 @@ export const markers = [
                 description: "Located on the first floor near the main entrance.",
                 rating: '⭐⭐⭐',
             },
-            w3: {
-                type: "Unisex",
-                accessibility: "Accessible",
-                description: "Located on the first floor near the main entrance.",
-                rating: '⭐⭐⭐⭐',
-            }
         }
     },
     {
@@ -166,18 +148,6 @@ export const markers = [
                 description: "Located on the first floor near the main entrance.",
                 rating: '⭐⭐⭐⭐⭐',
             },
-            w2: {
-                type: "Unisex",
-                accessibility: "Accessible",
-                description: "Located on the first floor near the main entrance.",
-                rating: '⭐⭐⭐',
-            },
-            w3: {
-                type: "Unisex",
-                accessibility: "Accessible",
-                description: "Located on the first floor near the main entrance.",
-                rating: '⭐⭐⭐⭐',
-            }
         }
     },
     {
@@ -232,12 +202,6 @@ export const markers = [
                 description: "Located on the first floor near the main entrance.",
                 rating: '⭐⭐⭐',
             },
-            w3: {
-                type: "Unisex",
-                accessibility: "Accessible",
-                description: "Located on the first floor near the main entrance.",
-                rating: '⭐⭐⭐⭐',
-            }
         }
     },
     {

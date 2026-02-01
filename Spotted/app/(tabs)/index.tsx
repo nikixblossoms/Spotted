@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import MapView, { Callout, Marker, PROVIDER_GOOGLE, Region } from 'react-native-maps';
 import { StyleSheet, View, Text, TouchableOpacity, ScrollView } from 'react-native';
-import { useNavigation, Link, useRouter } from 'expo-router';
+import { useNavigation, Link } from 'expo-router';
 import { markers } from '@/assets/markers';
+import Feather from '@expo/vector-icons/Feather';
 
 
 const INITIAL_REGION = {
@@ -42,7 +43,8 @@ export default function App() {
   };
 
   const onRegionChange = (region: Region) => {
-    console.log(region);
+    // You can handle region changes here if needed
+    // console.log('Region changed to:', region);
   };
   
   
@@ -57,6 +59,15 @@ export default function App() {
           showsMyLocationButton
           onRegionChangeComplete={onRegionChange}
           ref={mapRef}
+
+          // iOS: limit camera zoom
+          minZoomLevel={15}       // minimum zoom (Android)
+          maxZoomLevel={20}       // maximum zoom (Android)
+          zoomControlEnabled={true} // optional: show zoom buttons on Android
+
+          // iOS only
+          maxDelta={0.02}         // don't let users zoom out too far
+          minDelta={0.005}        // don't let users zoom in too much
         >
           {/* markers */}
           {markers.map((marker, index) => (
@@ -96,7 +107,7 @@ export default function App() {
         {/* Floating button */}
         <Link href="/form" asChild>
           <TouchableOpacity style={styles.floatingButton}>
-            <Text style={styles.floatingButtonText}>+</Text>
+            <Feather name="plus" size={24} color="white" />
           </TouchableOpacity>
         </Link>
 
@@ -154,7 +165,7 @@ const styles = StyleSheet.create({
     left: 15,
     backgroundColor: '#ff3b58',
     paddingVertical: 16,
-    paddingHorizontal: 21,
+    paddingHorizontal: 17,
     borderRadius: 10000,
     elevation: 6,
     shadowColor: '#000',

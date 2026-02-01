@@ -21,7 +21,7 @@ export default function Details() {
 
   return (
     <>
-      <Stack.Screen options={{ title: 'Report a Spot', sheetAllowedDetents: [0.8],}} />
+      <Stack.Screen options={{ title: 'Details', sheetAllowedDetents: [0.8],}} />
       <ScrollView
         contentContainerStyle={{
           gap: 16,

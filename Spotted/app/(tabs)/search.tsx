@@ -1,6 +1,7 @@
 import { Link } from 'expo-router';
-import { ScrollView, Text, View, StyleSheet } from 'react-native';
+import { ScrollView, Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { markers } from '@/assets/markers';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 export default function Profile() {
   return (
@@ -11,6 +12,21 @@ export default function Profile() {
         marginTop: 50,
       }}
     >
+
+      {/* Floating button */}
+      <View style={styles.headerRow}>
+        <Text style={styles.title}>York U Washrooms</Text>
+
+        <Link href="/form" asChild>
+          <TouchableOpacity style={styles.floatingButton}>
+            <Ionicons name="filter" size={24} color="white" />
+          </TouchableOpacity>
+        </Link>
+      </View>
+
+
+
+
       {markers.map((marker) => (
         <Link
           key={marker.name}
@@ -65,6 +81,13 @@ const styles = StyleSheet.create({
     elevation: 6,
   },
 
+  title: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    marginBottom: 12,
+    textAlign: 'center',
+  },
+
   name: {
     fontSize: 26,
     fontWeight: 'bold',
@@ -79,6 +102,14 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
 
+  headerRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 16,
+    marginTop: 16,
+  },
+
   washroomContainer: {
     gap: 9,
   },
@@ -88,4 +119,21 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     textAlign: 'left',
   },
+
+  floatingButton: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    backgroundColor: "#f55f76",
+    alignItems: "center",
+    justifyContent: "center",
+  
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 6,
+  },
+  
+  
 });
