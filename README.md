@@ -17,3 +17,31 @@ Database
 <p align="left"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" width="45" alt="MongoDB"/> </p>
 Tools & Infrastructure
 <p align="left"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="45" alt="Git"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" width="45" alt="GitHub"/> </p>
+
+🧱 Data Model (Simplified)
+
+Building
+
+building_id
+
+building_name
+
+List of washrooms
+
+Washroom
+
+Location & address
+
+Accessibility features
+
+Created by user
+
+Recent reviews
+
+Review
+
+Ratings per feature
+
+Timestamp
+
+User-submitted note
