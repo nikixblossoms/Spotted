@@ -7,11 +7,11 @@ Spotted is a location-based web/mobile app that helps users quickly find nearby 
 
 Access to clean, safe, and well-equipped washrooms is often taken for granted—but for many people, it’s a real barrier. Spotted addresses this by:
 
-Reducing uncertainty in unfamiliar spaces
+* Reducing uncertainty in unfamiliar spaces
 
-Supporting people who menstruate, parents, and people with disabilities
+* Supporting people who menstruate, parents, and people with disabilities
 
-Centralizing reliable, community-verified information
+* Centralizing reliable, community-verified information
 
 ## 🔑 Key Features 
 
