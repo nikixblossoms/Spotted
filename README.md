@@ -1,4 +1,4 @@
-# 🫟 Spotted! Made by women, for women.
+# 🫟 Spotted!
 Find accessible washrooms. Instantly. Reliably. Stress-free.
 
 Spotted is a location-based mobile app that helps users quickly find nearby washrooms with specific accessibility features, including, but not limited to, period products, baby-changing stations, wheelchair access, and gender-neutral facilities. Built with accessibility and equity in mind, Spotted aims to remove uncertainty and stress in urgent moments.
