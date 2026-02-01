@@ -32,6 +32,7 @@ export default function Form() {
     const items = [
         { key: "periodProducts", label: "Period Products" },
         { key: "babyChanging", label: "Baby Changing" },
+        { key: "accessible", label: "Accessible" },
         { key: "genderNeutral", label: "Gender Neutral" },
         { key: "familyFriendly", label: "Family Friendly Rooms" },
     ] as const;
@@ -70,7 +71,7 @@ export default function Form() {
 
             <TextInput placeholder="Floor" placeholderTextColor="#D3D3D3" style={styles.input} />
 
-            <Text style={styles.subtitle}>Key Amenities</Text>
+            <Text style={styles.subtitle}>Key Amenities (Select all that apply)</Text>
 
             {/* Toggles */}
 

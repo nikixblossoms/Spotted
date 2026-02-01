@@ -3,7 +3,7 @@ import { ScrollView, Text, View, StyleSheet, TouchableOpacity } from 'react-nati
 import { markers } from '@/assets/markers';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-export default function Profile() {
+export default function Search() {
   return (
     <ScrollView
       contentContainerStyle={{
@@ -17,7 +17,7 @@ export default function Profile() {
       <View style={styles.headerRow}>
         <Text style={styles.title}>York U Washrooms</Text>
 
-        <Link href="/form" asChild>
+        <Link href="../form" asChild>
           <TouchableOpacity style={styles.floatingButton}>
             <Ionicons name="filter" size={24} color="white" />
           </TouchableOpacity>
@@ -28,7 +28,7 @@ export default function Profile() {
       {markers.map((marker) => (
         <Link
           key={marker.name}
-          href={{ pathname: '/details', params: { name: marker.name } }}
+          href={{ pathname: '../details', params: { name: marker.name } }}
           style={styles.card}
         >
           <View>
