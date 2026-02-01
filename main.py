@@ -1,13 +1,6 @@
-from fastapi import FastAPI, HTTPException
-from bson import ObjectId
-import os
-import googlemaps
-from dotenv import load_dotenv
+from fastapi import FastAPI
 
 from database import buildings_collection, washrooms_collection, reviews_collection
-
-load_dotenv()
-map_client = googlemaps.Client(key=os.getenv("Maps_API_Key"))
 
 app = FastAPI()
 
@@ -29,3 +22,4 @@ def get_reviews():
 def verify_washroom(washroom_id: str) -> bool:
     count = reviews_collection.count_documents({"washroom_id": washroom_id, "verified": True})
     return count >= 3
+
