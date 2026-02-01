@@ -4,6 +4,7 @@ import { StyleSheet, View, Text, TouchableOpacity, ScrollView } from 'react-nati
 import { useNavigation, Link } from 'expo-router';
 import { markers } from '@/assets/markers';
 import Feather from '@expo/vector-icons/Feather';
+import { fetchWashrooms, Washroom } from "../api/washrooms";
 
 
 const INITIAL_REGION = {
