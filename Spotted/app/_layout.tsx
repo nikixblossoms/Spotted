@@ -25,6 +25,18 @@ export default function RootLayout() {
           // headerShown: false,
         }} 
       />
+      <Stack.Screen 
+        name='form' 
+        options={{
+          title: 'Report a Spot',
+          headerBackButtonDisplayMode: 'minimal',
+          presentation: 'formSheet',
+          sheetAllowedDetents: [0.8],
+          // sheetAllowedDetents: [0.3, 0.5, 0.7],
+          // sheetGrabberVisible: true,
+          // headerShown: false,
+        }} 
+      />
     </Stack>
   );
   

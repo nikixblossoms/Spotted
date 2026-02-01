@@ -4,8 +4,6 @@ import { StyleSheet, View, Text, TouchableOpacity, ScrollView } from 'react-nati
 import { useNavigation, Link, useRouter } from 'expo-router';
 import { markers } from '@/assets/markers';
 
-// const router = useRouter();
-
 
 const INITIAL_REGION = {
   latitude: 43.7735,
@@ -47,39 +45,21 @@ export default function App() {
     console.log(region);
   };
   
-
-  // const onCalloutPress = (marker: any, washroomKey: string) => {
-  //   router.push({
-  //     pathname: '/details',
-  //     params: { name: marker.name, washroom: washroomKey },
-  //   });
-  // };
   
 
-  return (
-    <View style={{ flex: 1 }}>
-      <MapView
-        style={StyleSheet.absoluteFill}
-        provider={PROVIDER_GOOGLE}
-        initialRegion={INITIAL_REGION}
-        showsUserLocation
-        showsMyLocationButton
-        showsBuildings
-        showsIndoors
-        onRegionChangeComplete={onRegionChange}
-        ref={mapRef}
-
-        // iOS: limit camera zoom
-        minZoomLevel={15}       // minimum zoom (Android)
-        maxZoomLevel={20}       // maximum zoom (Android)
-        zoomControlEnabled={true} // optional: show zoom buttons on Android
-
-        // iOS only
-        maxDelta={0.02}         // don't let users zoom out too far
-        minDelta={0.005}        // don't let users zoom in too much
-      >
-
-        {markers.map((marker, index) => (
+    return (
+      <View style={{ flex: 1 }}>
+        <MapView
+          style={StyleSheet.absoluteFill}
+          provider={PROVIDER_GOOGLE}
+          initialRegion={INITIAL_REGION}
+          showsUserLocation
+          showsMyLocationButton
+          onRegionChangeComplete={onRegionChange}
+          ref={mapRef}
+        >
+          {/* markers */}
+          {markers.map((marker, index) => (
           <Marker key={index} coordinate={marker}>
             {/* tooltip is REQUIRED for scroll */}
             <Callout tooltip>
@@ -112,8 +92,20 @@ export default function App() {
           </Marker>
         ))}
       </MapView>
-    </View>
-  );
+    
+        {/* Floating button */}
+        <Link href="/form" asChild>
+          <TouchableOpacity style={styles.floatingButton}>
+            <Text style={styles.floatingButtonText}>+</Text>
+          </TouchableOpacity>
+        </Link>
+
+        
+
+        
+      </View>
+    );
+  
 }
 
 const styles = StyleSheet.create({
@@ -155,4 +147,25 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#333',
   },
+
+  floatingButton: {
+    position: 'absolute',
+    bottom: 13,
+    left: 15,
+    backgroundColor: '#ff3b58',
+    paddingVertical: 16,
+    paddingHorizontal: 21,
+    borderRadius: 10000,
+    elevation: 6,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+  },
+  floatingButtonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 20,
+  },
+  
 });
