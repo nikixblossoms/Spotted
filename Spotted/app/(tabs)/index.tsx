@@ -111,6 +111,13 @@ export default function App() {
           </TouchableOpacity>
         </Link>
 
+        {/* Closest Washroom button */}
+        <Link href="/" asChild>
+          <TouchableOpacity style={styles.closestWashroomButton}>
+            <Text style={styles.floatingButtonText}>Closest Washroom</Text>
+          </TouchableOpacity>
+        </Link>
+
         
 
         
@@ -176,7 +183,22 @@ const styles = StyleSheet.create({
   floatingButtonText: {
     color: '#fff',
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 15,
   },
+  closestWashroomButton: {
+    position: 'absolute',
+    top: 50,
+    alignSelf: 'center',
+    backgroundColor: '#ff3b58',
+    paddingVertical: 13,
+    paddingHorizontal: 17,
+    borderRadius: 10000,
+    elevation: 6,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+  },
+  
   
 });

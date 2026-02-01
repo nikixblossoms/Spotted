@@ -32,11 +32,16 @@ export default function RootLayout() {
           headerBackButtonDisplayMode: 'minimal',
           presentation: 'formSheet',
           sheetAllowedDetents: [0.8],
-          // sheetAllowedDetents: [0.3, 0.5, 0.7],
-          // sheetGrabberVisible: true,
-          // headerShown: false,
         }} 
       />
+      <Stack.Screen 
+        name='camera' 
+        options={{
+          headerBackButtonDisplayMode: 'minimal',
+          headerShown: false,
+        }} 
+      />
+      
     </Stack>
   );
   

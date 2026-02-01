@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Stack, useRouter } from "expo-router";
+import React, { useState } from "react";
+import { Stack, useRouter, Link } from "expo-router";
 import {
   ActionSheetIOS,
   Text,
@@ -12,7 +12,12 @@ import {
 } from "react-native";
 import { markers } from "@/assets/markers"; 
 import Slider from "@react-native-community/slider";
-
+import * as MediaLibrary from "expo-media-library";
+import {
+    CameraView,
+    CameraType,
+    useCameraPermissions,
+  } from "expo-camera";
 
 
 export default function Form() {
@@ -41,8 +46,6 @@ export default function Form() {
             [key]: value,
         }));
     };
-      
-
 
     const toggleItem = (key: keyof typeof toggles) => {
         setToggles((prev) => ({ ...prev, [key]: !prev[key] }));
@@ -65,8 +68,13 @@ export default function Form() {
         2: "Acceptable",
         3: "Excellent",
     };
-      
-      
+
+    <Link href="/camera" asChild>
+        <TouchableOpacity style={[styles.photoButton, {marginTop: 20}]}>
+            <Text style={styles.photoButtonText}>Take Photo</Text>
+        </TouchableOpacity>
+    </Link>
+
 
     const handlePress = (page: string) => {
         router.push('/'); 
@@ -181,27 +189,33 @@ export default function Form() {
             })}
 
             <Text style={[styles.subtitle, { marginTop: 10 }]}>
-            (Adjust the level to match what you noticed)
+                (Adjust the level to match what you noticed)
             </Text>
 
 
             <BoxedSlider
-            title="Accessibility"
-            value={levels.accessibility}
-            onChange={(v) => updateLevel("accessibility", v)}
+                title="Accessibility"
+                value={levels.accessibility}
+                onChange={(v) => updateLevel("accessibility", v)}
             />
 
             <BoxedSlider
-            title="Family Friendly Rooms"
-            value={levels.familyFriendlyRooms}
-            onChange={(v) => updateLevel("familyFriendlyRooms", v)}
+                title="Family Friendly Rooms"
+                value={levels.familyFriendlyRooms}
+                onChange={(v) => updateLevel("familyFriendlyRooms", v)}
             />
 
             <BoxedSlider
-            title="Cleanliness"
-            value={levels.cleanliness}
-            onChange={(v) => updateLevel("cleanliness", v)}
+                title="Cleanliness"
+                value={levels.cleanliness}
+                onChange={(v) => updateLevel("cleanliness", v)}
             />
+
+            <Link href="/camera" asChild>
+                <TouchableOpacity style={styles.photoButton}>
+                    <Text style={styles.photoButtonText}>Take Photo</Text>
+                </TouchableOpacity>
+            </Link>
 
 
             {/* Submit Button */}
@@ -210,8 +224,6 @@ export default function Form() {
                 <Text style={styles.buttonText}>Submit</Text>
                 </TouchableOpacity>
             </View>
-            
-
         </ScrollView>
         </>
     );
@@ -323,6 +335,7 @@ const styles = StyleSheet.create({
     paddingVertical: 18,
     borderRadius: 12,
     alignItems: 'center',
+    
   },
 
   buttonText: {
@@ -351,10 +364,88 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginTop: 4,
   },
-  
-  
-  
-  
+  photoSection: {
+    marginTop: 12,
+    borderWidth: 1,
+    borderColor: "#ddd",
+    borderRadius: 14,
+    padding: 14,
+    backgroundColor: "#fff",
+  },
 
+  photoTitle: { fontWeight: "700", marginBottom: 10 },
+
+  photoButton: {
+    backgroundColor: "#fff",
+    borderWidth: 1,
+    borderColor: "#f55f76",
+    padding: 12,
+    borderRadius: 10,
+    alignItems: "center",
+    marginBottom: 8,
+    marginTop: 10,
+    
+  },
+  photoButtonText: { color: "#f55f76", fontWeight: "700" },
+
+  cameraWrapper: {
+    width: "100%",
+    height: 300,
+    borderRadius: 14,
+    overflow: "hidden",
+    marginBottom: 12,
+  },
+
+  camera: {
+    flex: 1,
+  },
+
+
+  cameraButtons: {
+    position: "absolute",
+    bottom: 10,
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: 20,
+  },
+
+  cameraBtn: {
+    backgroundColor: "#00000080",
+    padding: 10,
+    borderRadius: 10,
+  },
+
+  cameraBtnText: {
+    color: "#fff",
+    fontWeight: "700",
+  },
+  photoPreview: {
+    width: "100%",
+    height: 200,
+    borderRadius: 12,
+  },
+
+  permissionContainer: {
+    flex: 1,
+    justifyContent: "center",
+    padding: 20,
+  },
+
+  permissionText: {
+    textAlign: "center",
+    marginBottom: 20,
+  },
+  permissionButton: {
+    backgroundColor: "#f55f76",
+    padding: 12,
+    borderRadius: 10,
+    alignItems: "center",
+  },
+
+  permissionButtonText: {
+    color: "#fff",
+    fontWeight: "700",
+  },
 });
 

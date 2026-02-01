@@ -76,6 +76,7 @@ export default function Details() {
               <Text style={styles.washroomRating}>{value.rating}</Text>
             </View>
           ))}
+          <Text style={{marginBottom: 66}}></Text>
       </ScrollView>
     </>
   );

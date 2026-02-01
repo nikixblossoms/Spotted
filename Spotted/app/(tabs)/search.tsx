@@ -17,7 +17,7 @@ export default function Search() {
       <View style={styles.headerRow}>
         <Text style={styles.title}>York U Washrooms</Text>
 
-        <Link href="../form" asChild>
+        <Link href="../search" asChild>
           <TouchableOpacity style={styles.floatingButton}>
             <Ionicons name="filter" size={24} color="white" />
           </TouchableOpacity>
