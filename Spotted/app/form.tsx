@@ -11,6 +11,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { markers } from "@/assets/markers"; 
+import Slider from "@react-native-community/slider";
+
 
 
 export default function Form() {
@@ -20,10 +22,27 @@ export default function Form() {
     const [toggles, setToggles] = useState({
         periodProducts: false,
         babyChanging: false,
-        accessible: false,
         genderNeutral: false,
         familyFriendly: false,
     });
+
+    const [levels, setLevels] = useState({
+        accessibility: 1,
+        familyFriendlyRooms: 1,
+        cleanliness: 1,
+      });
+
+    const updateLevel = (
+        key: keyof typeof levels,
+        value: number
+        ) => {
+        setLevels((prev) => ({
+            ...prev,
+            [key]: value,
+        }));
+    };
+      
+
 
     const toggleItem = (key: keyof typeof toggles) => {
         setToggles((prev) => ({ ...prev, [key]: !prev[key] }));
@@ -32,14 +51,63 @@ export default function Form() {
     const items = [
         { key: "periodProducts", label: "Period Products" },
         { key: "babyChanging", label: "Baby Changing" },
-        { key: "accessible", label: "Accessible" },
         { key: "genderNeutral", label: "Gender Neutral" },
-        { key: "familyFriendly", label: "Family Friendly Rooms" },
     ] as const;
+
+    const sliderItems = [
+        { key: "accessibility", label: "Accessibility" },
+        { key: "familyFriendlyRooms", label: "Family Friendly Rooms" },
+        { key: "cleanliness", label: "Cleanliness" },
+      ] as const;
+
+    const levelText = {
+        1: "Needs improvement",
+        2: "Acceptable",
+        3: "Excellent",
+    };
+      
+      
 
     const handlePress = (page: string) => {
         router.push('/'); 
       };
+
+      
+
+    function BoxedSlider({
+        title,
+        value,
+        onChange,
+        }: {
+        title: string;
+        value: number;
+        onChange: (v: number) => void;
+        }) {
+        return (
+            <View style={styles.sliderBox}>
+            {/* Title */}
+            <Text style={styles.sliderTitle}>{title}</Text>
+        
+            {/* Slider */}
+            <Slider
+                minimumValue={1}
+                maximumValue={3}
+                step={1}
+                value={value}
+                onValueChange={onChange}
+                minimumTrackTintColor="#f55f76"
+                maximumTrackTintColor="#ddd"
+                thumbTintColor="#f55f76"
+            />
+        
+            {/* Subtitle */}
+            <Text style={styles.sliderSubtitle}>
+                {levelText[value as 1 | 2 | 3]}
+            </Text>
+            </View>
+        );
+    }
+      
 
     return (
         <>
@@ -112,8 +180,32 @@ export default function Form() {
             );
             })}
 
+            <Text style={[styles.subtitle, { marginTop: 10 }]}>
+            (Adjust the level to match what you noticed)
+            </Text>
+
+
+            <BoxedSlider
+            title="Accessibility"
+            value={levels.accessibility}
+            onChange={(v) => updateLevel("accessibility", v)}
+            />
+
+            <BoxedSlider
+            title="Family Friendly Rooms"
+            value={levels.familyFriendlyRooms}
+            onChange={(v) => updateLevel("familyFriendlyRooms", v)}
+            />
+
+            <BoxedSlider
+            title="Cleanliness"
+            value={levels.cleanliness}
+            onChange={(v) => updateLevel("cleanliness", v)}
+            />
+
+
             {/* Submit Button */}
-            <View style={styles.buttonsContainer}>
+            <View style={[styles.buttonsContainer, {marginBottom: 80}]}>
                 <TouchableOpacity style={styles.button} onPress={() => handlePress("index")}>
                 <Text style={styles.buttonText}>Submit</Text>
                 </TouchableOpacity>
@@ -238,6 +330,31 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '600',
   },
+  sliderBox: {
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 12,
+    padding: 16,
+    backgroundColor: "#fff",
+    gap: 8,
+  },
+  
+  sliderTitle: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#333",
+  },
+  
+  sliderSubtitle: {
+    fontSize: 14,
+    color: "gray",
+    textAlign: "center",
+    marginTop: 4,
+  },
+  
+  
+  
+  
 
 });
 
