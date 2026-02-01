@@ -15,7 +15,7 @@ Access to clean, safe, and well-equipped washrooms is often taken for granted, b
 
 * **User-based feedback:** Add ratings for new/verified washrooms, score based on features like cleanliness, wheelchair accessibility, availibility of period products, etc.
 * **Interactive map:** Users interact with pinned locations and view the average rating and score breakdown.
-* * **Diverse range of needs:** Filter the map based on your accessible needs to find the most suitable washroom!
+* **Diverse range of needs:** Filter the map based on your accessible needs to find the most suitable washroom!
 
 ## 💻 Tech Stack
 Frontend
