@@ -1,0 +1,70 @@
+[
+  {
+    "name": "Vari Hall",
+    "address": "4700 Keele St, Toronto, ON M3J 1P3",
+    "lat": 43.7735,
+    "lng": -79.5019
+  },
+
+  {
+    "name": "Scott Library",
+    "address": "4700 Keele St, Toronto, ON M3J 1P3",
+    "lat": 43.7729,
+    "lng": -79.5056
+  },
+
+  {
+    "name": "Student Centre",
+    "address": "4700 Keele St, Toronto, ON M3J 1P3",
+    "lat": 43.7732,
+    "lng": -79.5037
+  },
+
+  {
+    "name": "Accolade East Building",
+    "address": "4700 Keele St, Toronto, ON M3J 1P3",
+    "lat": 43.7739,
+    "lng": -79.4996
+  },
+
+  {
+    "name": "Accolade West Building",
+    "address": "4700 Keele St, Toronto, ON M3J 1P3",
+    "lat": 43.7744,
+    "lng": -79.5008
+  },
+
+  {
+    "name": "Bergeron Centre for Engineering Excellence",
+    "address": "4700 Keele St, Toronto, ON M3J 1P3",
+    "lat": 43.7736,
+    "lng": -79.4978
+  },
+  
+  {
+    "name": "Life Sciences Building",
+    "address": "4700 Keele St, Toronto, ON M3J 1P3",
+    "lat": 43.7723,
+    "lng": -79.5043
+  },
+
+  {
+    "name": "Curtis Lecture Halls",
+    "address": "4700 Keele St, Toronto, ON M3J 1P3",
+    "lat": 43.7726,
+    "lng": -79.5030
+  },
+
+  {
+    "name": "Ross Building",
+    "address": "4700 Keele St, Toronto, ON M3J 1P3",
+    "lat": 43.7738,
+    "lng": -79.5045
+  },
+  {
+    "name": "Stedman Lecture Halls",
+    "address": "4700 Keele St, Toronto, ON M3J 1P3",
+    "lat": 43.7741,
+    "lng": -79.5032
+  }
+]
