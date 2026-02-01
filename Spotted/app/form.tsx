@@ -10,6 +10,7 @@ import {
   View,
   TouchableOpacity,
 } from "react-native";
+import { markers } from "@/assets/markers"; 
 
 
 export default function Form() {
@@ -32,7 +33,7 @@ export default function Form() {
         { key: "periodProducts", label: "Period Products" },
         { key: "babyChanging", label: "Baby Changing" },
         { key: "genderNeutral", label: "Gender Neutral" },
-        { key: "familyFriendly", label: "Family Friendly Changing Rooms" },
+        { key: "familyFriendly", label: "Family Friendly Rooms" },
     ] as const;
 
     const handlePress = (page: string) => {
@@ -52,14 +53,12 @@ export default function Form() {
             onPress={() =>
                 ActionSheetIOS.showActionSheetWithOptions(
                 {
-                    options: ["Cancel", "Library", "Science Building", "Student Centre"],
+                    options: ["Cancel", ...markers.map((m) => m.name)],
                     cancelButtonIndex: 0,
                 },
                 (buttonIndex) => {
                     if (buttonIndex === 0) return;
-                    setBuilding(
-                    ["Library", "Science Building", "Student Centre"][buttonIndex - 1]
-                    );
+                    setBuilding(markers[buttonIndex - 1].name);
                 }
                 )
             }

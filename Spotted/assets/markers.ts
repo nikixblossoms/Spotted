@@ -8,6 +8,14 @@ export const markers = [
         address: "4700 Keele St, Toronto, ON M3J 1P3",
         id: 1,
         name: "Vari Hall",
+        ratingsCount: 54,
+        openingTime: "8 AM - 10 PM",
+        filters: {
+            periodProducts: true,
+            babyChanging: false,
+            genderNeutral: true,
+            familyRoom: false,
+        },
         washrooms: {
             w1: {
                 type: "Unisex",
@@ -38,19 +46,26 @@ export const markers = [
         address: "1700 Finch Ave W, Toronto, ON M3J 2X6",
         id: 2,
         name: "Scott Library",
-        rating: '⭐⭐⭐',
+        ratingsCount: 32,
+        openingTime: "9 AM - 11 PM",
+        filters: {
+            periodProducts: false,
+            babyChanging: true,
+            genderNeutral: true,
+            familyRoom: true,
+        },
         washrooms: {
             w1: {
                 type: "Unisex",
                 accessibility: "Accessible",
                 description: "Located on the first floor near the main entrance.",
-                rating: '⭐⭐⭐⭐⭐',
+                rating: '⭐⭐⭐',
             },
             w2: {
                 type: "Unisex",
                 accessibility: "Accessible",
                 description: "Located on the first floor near the main entrance.",
-                rating: '⭐⭐⭐',
+                rating: '⭐⭐⭐⭐',
             },
             w3: {
                 type: "Unisex",
@@ -68,7 +83,14 @@ export const markers = [
         address: "1 Seneca College Way, Toronto, ON M3J 4S6",
         id: 3,
         name: "Student Center",
-        rating: '⭐⭐',
+        ratingsCount: 17,
+        openingTime: "6 AM - 9 PM",
+        filters: {
+            periodProducts: true,
+            babyChanging: false,
+            genderNeutral: true,
+            familyRoom: false,
+        },
         washrooms: {
             w1: {
                 type: "Unisex",
@@ -86,7 +108,14 @@ export const markers = [
         address: "4700 Keele St, Toronto, ON M3J 1P3",
         id: 4,
         name: "Accolade East Building",
-        rating: '⭐⭐⭐⭐',
+        ratingsCount: 49,
+        openingTime: "7 AM - 10 PM",
+        filters: {
+            periodProducts: true,
+            babyChanging: false,
+            genderNeutral: false,
+            familyRoom: false,
+        },
         washrooms: {
             w1: {
                 type: "Unisex",
@@ -116,7 +145,14 @@ export const markers = [
         address: "4700 Keele St, Toronto, ON M3J 1P3",
         id: 4,
         name: "Bergeron Centre for Engineering Excellence",
-        rating: '⭐⭐⭐⭐',
+        ratingsCount: 6,
+        openingTime: "8 AM - 9 PM",
+        filters: {
+            periodProducts: true,
+            babyChanging: true,
+            genderNeutral: false,
+            familyRoom: true,
+        },
         washrooms: {
             w1: {
                 type: "Unisex",
@@ -140,7 +176,14 @@ export const markers = [
         address: "4700 Keele St, Toronto, ON M3J 1P3",
         id: 4,
         name: "Life Sciences Building",
-        rating: '⭐⭐⭐⭐',
+        ratingsCount: 22,
+        openingTime: "6 AM - 9 PM",
+        filters: {
+            periodProducts: true,
+            babyChanging: false,
+            genderNeutral: true,
+            familyRoom: false,
+        },
         washrooms: {
             w1: {
                 type: "Unisex",
@@ -158,7 +201,14 @@ export const markers = [
         address: "4700 Keele St, Toronto, ON M3J 1P3",
         id: 4,
         name: "Curtis Lecture Halls",
-        rating: '⭐⭐⭐⭐',
+        ratingsCount: 29,
+        openingTime: "10 AM - 12 AM",
+        filters: {
+            periodProducts: true,
+            babyChanging: false,
+            genderNeutral: false,
+            familyRoom: false,
+        },
         washrooms: {
             w1: {
                 type: "Unisex",
@@ -188,7 +238,14 @@ export const markers = [
         address: "4700 Keele St, Toronto, ON M3J 1P3",
         id: 4,
         name: "Ross Building",
-        rating: '⭐⭐⭐⭐',
+        ratingsCount: 31,
+        openingTime: "6 AM - 9 PM",
+        filters: {
+            periodProducts: true,
+            babyChanging: false,
+            genderNeutral: true,
+            familyRoom: false,
+        },
         washrooms: {
             w1: {
                 type: "Unisex",
@@ -212,7 +269,14 @@ export const markers = [
         address: "4700 Keele St, Toronto, ON M3J 1P3",
         id: 4,
         name: "Stedman Lecture Halls",
-        rating: '⭐⭐⭐⭐',
+        ratingsCount: 17,
+        openingTime: "7 AM - 11 PM",
+        filters: {
+            periodProducts: true,
+            babyChanging: true,
+            genderNeutral: true,
+            familyRoom: false,
+        },
         washrooms: {
             w1: {
                 type: "Unisex",

@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
-import { useRouter } from 'expo-router';
+import { useRouter, Link } from 'expo-router';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 export default function Profile() {
   const router = useRouter();
@@ -14,6 +15,16 @@ export default function Profile() {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
+
+      {/* Floating button */}
+      <View style={styles.buttonRow}>
+        <Link href="/profile" asChild>
+          <TouchableOpacity style={styles.floatingButton}>
+            <Ionicons name="notifications" size={24} color="white"/>
+          </TouchableOpacity>
+        </Link>
+      </View>
+
       {/* Profile Info */}
       <View style={styles.profileInfo}>
         <Image source={{ uri: profilePic }} style={styles.profilePic} />
@@ -23,11 +34,11 @@ export default function Profile() {
       {/* Buttons */}
       <View style={styles.buttonsContainer}>
         <TouchableOpacity style={styles.button} onPress={() => handlePress("settings")}>
-          <Text style={styles.buttonText}>Settings</Text>
+          <Text style={styles.buttonText}>Saved Spots</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.button} onPress={() => handlePress("notifications")}>
-          <Text style={styles.buttonText}>Notifications</Text>
+          <Text style={styles.buttonText}>Settings</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.button} onPress={() => handlePress("help")}>
@@ -43,7 +54,7 @@ const styles = StyleSheet.create({
     padding: 40,
     alignItems: 'center',
     gap: 35,
-    marginTop: 100,
+    marginTop: 70,
     borderRadius: 20,
 
     // iOS shadow
@@ -88,5 +99,32 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 18,
     fontWeight: '600',
+  },
+  floatingButton: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    backgroundColor: "#f55f76",
+    alignItems: "center",
+    justifyContent: "center",
+  
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 6,
+  },
+  buttonRow: {
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "flex-end",  
+    marginTop: 10,                
+  },
+  
+  title: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    marginBottom: 12,
+    textAlign: 'center',
   },
 });

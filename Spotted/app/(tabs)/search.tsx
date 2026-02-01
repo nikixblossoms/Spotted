@@ -25,8 +25,6 @@ export default function Profile() {
       </View>
 
 
-
-
       {markers.map((marker) => (
         <Link
           key={marker.name}
@@ -36,27 +34,28 @@ export default function Profile() {
           <View>
             <Text style={styles.name}>{marker.name}</Text>
 
-            {/* <Text style={styles.subtitle}>
-              {marker.latitude.toFixed(4)}, {marker.longitude.toFixed(4)}
-            </Text> */}
+            {/* INFO ROW */}
+            <View style={styles.infoRow}>
+              <Text style={styles.infoText}>⭐ {marker.ratingsCount ?? 0}</Text>
+              <Text style={styles.infoText}>⏰ {marker.openingTime ?? 'N/A'}</Text>
+            </View>
 
-            <View style={styles.washroomContainer}>
-              {marker.washrooms?.w1 && (
-                <Text style={styles.washroom}>
-                  W1: {marker.washrooms.w1.rating}
-                </Text>
+            {/* FILTER CHIPS */}
+            <View style={styles.chipsRow}>
+              {marker.filters?.periodProducts && (
+                <Text style={styles.chip}>Period Products</Text>
               )}
-              {marker.washrooms?.w2 && (
-                <Text style={styles.washroom}>
-                  W2: {marker.washrooms.w2.rating}
-                </Text>
+              {marker.filters?.babyChanging && (
+                <Text style={styles.chip}>Baby Changing</Text>
               )}
-              {marker.washrooms?.w3 && (
-                <Text style={styles.washroom}>
-                  W3: {marker.washrooms.w3.rating}
-                </Text>
+              {marker.filters?.genderNeutral && (
+                <Text style={styles.chip}>Gender Neutral</Text>
+              )}
+              {marker.filters?.familyRoom && (
+                <Text style={styles.chip}>Family Room</Text>
               )}
             </View>
+
           </View>
         </Link>
       ))}
@@ -108,6 +107,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 16,
     marginTop: 16,
+    marginBottom: 8,
   },
 
   washroomContainer: {
@@ -133,6 +133,33 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 4,
     elevation: 6,
+  },
+  infoRow: {
+    flexDirection: 'row',
+    gap: 12,
+    marginBottom: 10,
+  },
+
+  infoText: {
+    fontSize: 16,
+    color: '#333',
+  },
+
+  chipsRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+  },
+
+  chip: {
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    borderRadius: 999,
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderColor: '#ccc',
+    fontSize: 14,
+    color: '#333',
   },
   
   
